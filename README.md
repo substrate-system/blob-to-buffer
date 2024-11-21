@@ -1,13 +1,12 @@
-# blob-to-buffer [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url]
-
-[travis-image]: https://img.shields.io/travis/feross/blob-to-buffer/master.svg
-[travis-url]: https://travis-ci.org/feross/blob-to-buffer
-[npm-image]: https://img.shields.io/npm/v/blob-to-buffer.svg
-[npm-url]: https://npmjs.org/package/blob-to-buffer
-[downloads-image]: https://img.shields.io/npm/dm/blob-to-buffer.svg
-[downloads-url]: https://npmjs.org/package/blob-to-buffer
-[standard-image]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
-[standard-url]: https://standardjs.com
+# blob to buffer
+![tests](https://github.com/substrate-system/blob-to-buffer/actions/workflows/nodejs.yml/badge.svg)
+[![types](https://img.shields.io/npm/types/@substrate-system/blob-to-buffer?style=flat-square)](README.md)
+[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
+[![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
+[![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
+[![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/blob-to-buffer)](https://packagephobia.com/result?p=@substrate-system/blob-to-buffer)
+[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
+[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 #### Convert a Blob to a [Buffer](https://github.com/feross/buffer).
 

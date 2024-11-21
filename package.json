@@ -1,39 +1,67 @@
 {
-  "name": "blob-to-buffer",
+  "name": "@substrate-system/blob-to-buffer",
+  "type": "module",
   "description": "Convert a Blob to a Buffer",
   "version": "1.2.9",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "lint": "eslint \"./**/*.{ts,js}\"",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-esm:min && npm run build-cjs:min",
+    "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
+    "build-cjs:min": "esbuild src/*.ts --format=cjs --minify --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.min.cjs --sourcemap",
+    "build-esm": "esbuild src/*.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
+    "build-esm:min": "esbuild ./src/*.ts --format=esm --keep-names --bundle --tsconfig=tsconfig.build.json --minify --out-extension:.js=.min.js --outdir=./dist --sourcemap",
+    "build-tests": "esbuild test/index.ts --target=es2020 --bundle --keep-names > test/test-bundle.js",
+    "preversion": "npm run lint",
+    "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
+    "postversion": "git push --follow-tags && npm publish",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build && npm run build-tests && npm run test-tape-run",
+    "test-tape-run": "cat test/index.html | tape-run --input=html --static=test | tap-spec"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@bicycle-codes/tapzero": "^0.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "auto-changelog": "^2.5.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "markdown-toc": "^1.2.0",
+    "tap-spec": "^5.0.0",
+    "tape-run": "^11.0.0",
+    "typedoc": "^0.26.11",
+    "typescript": "^5.6.3"
+  },
+  "homepage": "https://github.com/feross/blob-to-buffer",
+  "keywords": [
+    "blob",
+    "buffer",
+    "browser",
+    "convert",
+    "filereader"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/feross/blob-to-buffer.git"
+  },
+  "contributors": [
+    "Nick Thomas <nichoth@nichoth.com> (https://nichoth.com)"
+  ],
   "author": {
     "name": "Feross Aboukhadijeh",
     "email": "feross@feross.org",
     "url": "https://feross.org"
   },
   "bugs": {
-    "url": "https://github.com/feross/blob-to-buffer/issues"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "airtap": "^3.0.0",
-    "standard": "*",
-    "tape": "^5.0.1"
-  },
-  "homepage": "https://github.com/feross/blob-to-buffer",
-  "keywords": [
-    "blob",
-    "browserify",
-    "buffer",
-    "convert",
-    "filereader"
-  ],
-  "license": "MIT",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/feross/blob-to-buffer.git"
-  },
-  "scripts": {
-    "test": "standard && npm run test-browser",
-    "test-browser": "airtap -- test/*.js",
-    "test-browser-local": "airtap --local -- test/*.js"
+    "url": "https://github.com/substrate-system/blob-to-buffer/issues"
   },
   "funding": [
     {
@@ -48,5 +76,6 @@
       "type": "consulting",
       "url": "https://feross.org/support"
     }
-  ]
+  ],
+  "license": "MIT"
 }

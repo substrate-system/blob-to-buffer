@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts"],
+  "sourcesContent": ["export async function blobToBuffer (blob:Blob) {\n    const reader = new FileReader()\n\n    return new Promise((resolve, reject) => {\n        reader.addEventListener('loadend', onLoadEnd, false)\n        reader.addEventListener('error', onErr, false)\n\n        reader.readAsArrayBuffer(blob)\n\n        function onErr (ev) {\n            reader.removeEventListener('error', onErr, false)\n            reader.removeEventListener('loadend', onLoadEnd, false)\n            reject(ev)\n        }\n\n        function onLoadEnd () {\n            reader.removeEventListener('loadend', onLoadEnd, false)\n            reader.removeEventListener('error', onErr, false)\n            resolve(reader.result)\n        }\n    })\n}\n\nexport default blobToBuffer\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,eAAsB,aAAc,MAAW;AAC3C,QAAM,SAAS,IAAI,WAAW;AAE9B,SAAO,IAAI,QAAQ,CAAC,SAAS,WAAW;AACpC,WAAO,iBAAiB,WAAW,WAAW,KAAK;AACnD,WAAO,iBAAiB,SAAS,OAAO,KAAK;AAE7C,WAAO,kBAAkB,IAAI;AAE7B,aAAS,MAAO,IAAI;AAChB,aAAO,oBAAoB,SAAS,OAAO,KAAK;AAChD,aAAO,oBAAoB,WAAW,WAAW,KAAK;AACtD,aAAO,EAAE;AAAA,IACb;AAJS;AAMT,aAAS,YAAa;AAClB,aAAO,oBAAoB,WAAW,WAAW,KAAK;AACtD,aAAO,oBAAoB,SAAS,OAAO,KAAK;AAChD,cAAQ,OAAO,MAAM;AAAA,IACzB;AAJS;AAAA,EAKb,CAAC;AACL;AArBsB;AAuBtB,IAAO,cAAQ;",
+  "names": []
+}

@@ -1,4 +1,4 @@
-!dist
 node_modules
-.env
+bundle.js
 .DS_Store
+.env
